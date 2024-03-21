@@ -11,7 +11,7 @@ export const loadPosts = async () => {
 };
 
 export const loadCommentForPost = async (postId: number) => {
-	const comment = await fetchCommentForPost(postId);
+	const comment = (await fetchCommentForPost(postId)).comments[0];
 	posts.update((allPosts) => {
 		const postIndex = allPosts.findIndex((post) => post.ID === postId);
 		if (postIndex !== -1) {

@@ -2,6 +2,7 @@
 <script lang="ts">
 	import type { Post as PostType } from '$lib/types';
 	import Comment from './Comment.svelte';
+	import ContentDisplay from './composites/ContentDisplay.svelte';
 
 	export let post: PostType;
 
@@ -17,12 +18,12 @@
   };
 </script>
 
-<a
-  class="max-w-sm rounded overflow-hidden shadow-lg cursor-pointer hover:bg-gray-100 transition duration-300 ease-in-out"
-  on:click={navigateToPost}
+<div
+  class="flex-1 flex flex-col justify-betwen h-full mr-8 max-w-sm rounded overflow-hidden shadow-lg cursor-pointer hover:bg-gray-100 transition duration-300 ease-in-out
+  align-items-center"
 >
   <div class="px-6 py-4">
-    <h2 class="font-bold text-xl mb-2">{post.title}</h2>
+    <a class="display-1 font-bold text-xl mb-2" on:click={navigateToPost}>{post.title}</a>
     <p class="text-gray-700 text-base">
       ID: {post.ID}
     </p>
@@ -35,6 +36,7 @@
     <p class="text-gray-700 text-base">
       Slug: {post.slug}
     </p>
+    <ContentDisplay content={post.content}/>
   </div>
 
   {#if post.comment}
@@ -42,7 +44,7 @@
 	  <Comment comment={post.comment} />
   </div>
 {/if}
-</a>
+</div>
 
 
 <style lang="postcss">

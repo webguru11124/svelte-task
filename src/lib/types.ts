@@ -4,12 +4,19 @@ export interface Post {
 	content: string;
 	comment?: Comment; // Optional property to hold the comment once loaded
 	URL: string;
-	author: { name: string };
+	author: Author;
 	date: string;
 	slug: string;
 }
 
+export interface Author {
+	name: string;
+}
 export interface Comment {
 	ID: number;
 	content: string;
+	author: Author;
+	date: string;
+	status: string;
+	like_count: string;
 }
